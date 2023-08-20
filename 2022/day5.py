@@ -7,6 +7,14 @@ grid_pattern = r'(\[[A-Z]\]|\s\s\s)\s?'
 labels_pattern = r'(\d)'
 
 
+class Simulation:
+
+    def __init__(self):
+        self.instructions = read_crate_instructions()
+        self.grid = read_crate_grid()
+        self.stacks = crate_grid_to_stacks(self.grid)
+
+
 def read_message(stacks):
     message = ''
     for stack in stacks:
@@ -105,3 +113,7 @@ def instruction_to_vector(instruction):
 
 if __name__ == '__main__':
     print(read_message(sort_stacks()))
+
+    sim = Simulation()
+    print(sim.grid)
+    print(sim.stacks)
