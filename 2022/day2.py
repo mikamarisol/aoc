@@ -2,7 +2,7 @@ import pandas as pd
 
 
 def read_strategy_data():
-    with open('resources/rock_paper_scissors.txt') as strategy:
+    with open('../resources/rock_paper_scissors.txt') as strategy:
         return [line.strip() for line in strategy.readlines()]
 
 

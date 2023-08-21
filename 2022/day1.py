@@ -2,7 +2,7 @@ import itertools
 
 
 def read_calories_list():
-    with open('resources/calories.txt') as calories:
+    with open('../resources/calories.txt') as calories:
         return [line_to_int(line) for line in calories.readlines()]
 
 
