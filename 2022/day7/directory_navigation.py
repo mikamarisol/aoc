@@ -4,7 +4,6 @@ from file import File
 
 instructions_file = '../../resources/directory_navigation_output.txt'
 
-
 def read_instructions(directory_navigation_file):
     with open(directory_navigation_file) as file:
         return file.read(20480).splitlines()[1:]
@@ -56,5 +55,31 @@ def sum_small_files():
     return sum_small_sizes
 
 
+def smallest_directory():
+    instructions = read_instructions(instructions_file)
+    directory = directory_from_instructions(instructions)
+
+    disk_space = 70000000
+    required_space = 30000000
+    used_space = directory.size
+    unused_space = disk_space - used_space
+    space_needed = required_space - unused_space
+
+    print('used {} out of {}, need {} more free'.format(used_space, disk_space, space_needed))
+
+    smallest = used_space
+    descendants = directory.get_descendants()
+    while True:
+        try:
+            descendant = next(descendants)
+            if space_needed <= descendant.size < smallest:
+                smallest = descendant.size
+        except StopIteration:
+            break
+    return smallest
+
+
+
 if __name__ == '__main__':
-    print(sum_small_files())
+    # print(sum_small_files())
+    print(smallest_directory())
