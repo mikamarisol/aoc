@@ -2,6 +2,8 @@ from patterns import *
 from directory import Directory
 from file import File
 
+instructions_file = '../../resources/directory_navigation_output.txt'
+
 
 def read_instructions(directory_navigation_file):
     with open(directory_navigation_file) as file:
@@ -34,16 +36,25 @@ def directory_from_instructions(directory_navigation):
     root.update_size()
     return root
 
-if __name__ == '__main__':
-    instructions_file = '../../resources/directory_navigation_output.txt'
+
+def sum_small_files():
     instructions = read_instructions(instructions_file)
     directory = directory_from_instructions(instructions)
-    size_limit = 100000
 
-    print(directory.size)
-    print(directory)
+    size_limit = 100000
+    sum_small_sizes = 0
 
     descendants = directory.get_descendants()
-    sum_sizes_under_limit = sum([child.size for child in descendants if child.size <= size_limit ])
-    print(sum_sizes_under_limit)
+    while True:
+        try:
+            descendant = next(descendants)
+            if descendant.size <= size_limit:
+                sum_small_sizes += descendant.size
+        except StopIteration:
+            break
 
+    return sum_small_sizes
+
+
+if __name__ == '__main__':
+    print(sum_small_files())

@@ -6,4 +6,4 @@ class File:
         self.parent = None
 
     def __str__(self, level):
-        return " " * level + self.name + ' ' + str(self.size) + ' \n'
+        return '.' * level + '- ' + self.name + ' ' + str(self.size) + ' \n'

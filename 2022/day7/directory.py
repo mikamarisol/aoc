@@ -8,7 +8,7 @@ class Directory:
         self.size = 0
 
     def __str__(self, level=0):
-        ret = " " * level + self.name + ' ' + str(self.size) + ' \n'
+        ret = '.' * level + '- ' + self.name + ' ' + str(self.size) + ' \n'
         for child in self.directories + self.files:
             ret += child.__str__(level + 1)
         return ret
@@ -43,7 +43,7 @@ class Directory:
         self.size = sum([child.size for child in self.files + self.directories])
 
     def get_descendants(self):
-        descendants = self.directories
-        for descendant in descendants:
-            descendants += descendant.get_descendants()
-        return descendants
+        yield self
+        for descendant in self.directories:
+            yield from descendant.get_descendants()
+
