@@ -5,5 +5,5 @@ class File:
         self.size = size
         self.parent = None
 
-    def __str__(self):
-        return self.name
+    def __str__(self, level):
+        return " " * level + str(self.name) + '\n'

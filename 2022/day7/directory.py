@@ -1,6 +1,3 @@
-from file import File
-
-
 class Directory:
 
     def __init__(self, name):
@@ -10,8 +7,11 @@ class Directory:
         self.directories = []
         self.size = 0
 
-    def __str__(self):
-        return self.name
+    def __str__(self, level=0):
+        ret = " " * level + str(self.name) + '\n'
+        for child in self.directories + self.files:
+            ret += child.__str__(level + 1)
+        return ret
 
     def get_directories(self):
         return [directory.name for directory in self.directories]
@@ -40,22 +40,3 @@ class Directory:
         self.files.append(file)
         file.parent = self
         self.size += file.size
-
-if __name__ == '__main__':
-    root = Directory('/')
-    root.create_directory(Directory('abc'))
-    root.create_file(File('file', 2))
-    root.create_file(File('another', 67))
-    print(root.has_directory('abc'))
-    print(root.get_directories())
-    print(root.has_file('file'))
-    print(root.get_files())
-
-    node = Directory('node')
-    root.create_directory(node)
-    print(node.parent)
-    print(root.get_directories())
-
-    print(root.get_directory('abc').parent)
-    print(root.get_file('file').size)
-    print(root.size)
