@@ -29,9 +29,21 @@ def directory_from_instructions(directory_navigation):
             name = DIR_PATTERN.match(instruction).group('name')
             current_dir.create_directory(Directory(name))
 
+        current_dir.update_size()
+
+    root.update_size()
     return root
 
 if __name__ == '__main__':
     instructions_file = '../../resources/directory_navigation_output.txt'
     instructions = read_instructions(instructions_file)
-    print(directory_from_instructions(instructions))
+    directory = directory_from_instructions(instructions)
+    size_limit = 100000
+
+    print(directory.size)
+    print(directory)
+
+    descendants = directory.get_descendants()
+    sum_sizes_under_limit = sum([child.size for child in descendants if child.size <= size_limit ])
+    print(sum_sizes_under_limit)
+
