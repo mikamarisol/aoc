@@ -1,5 +1,9 @@
 import numpy as np
 
+from random import randint
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+
 def read_trail():
     with open('../resources/rope_trail.txt') as trail_file:
         instructions = trail_file.read().splitlines()
@@ -20,6 +24,22 @@ def read_trail():
     return trail
 
 
+def animate(i):
+    pt = randint(1,9) # grab a random integer to be the next y-value in the animation
+    hx.append(H_trail[i][0])
+    hy.append(H_trail[i][1])
+
+    tx.append(T_trail[i][0])
+    ty.append(T_trail[i][1])
+
+    ax.clear()
+    ax.plot(hx, hy, marker='$H$')
+    ax.plot(tx, ty, marker='$T$')
+    ax.grid()
+    ax.set_xlim([-10, 10])
+    ax.set_ylim([-10, 10])
+
+
 def move_rope(trail):
     H = np.array([0, 0])
     T = np.array([0, 0])
@@ -34,7 +54,7 @@ def move_rope(trail):
             T = take_step(T, t)
         T_trail.append(T)
 
-    return T_trail
+    return H_trail, T_trail
 
 
 def move_long_rope(trail):
@@ -70,6 +90,13 @@ def displacement(H, T):
 
 if __name__ == '__main__':
     trail = read_trail()
-    # T_trail = move_rope(trail)
-    T_trail = (move_long_rope(trail))
-    print(len(np.unique(T_trail, axis=0)))
+    H_trail, T_trail = move_rope(trail)
+    # T_trail = (move_long_rope(trail))
+    # print(len(np.unique(T_trail, axis=0)))
+    hx=[]
+    hy=[]
+    tx=[]
+    ty=[]
+    fig, ax = plt.subplots()
+    ani = FuncAnimation(fig, animate, frames=2000, interval=200, repeat=False)
+    plt.show()
