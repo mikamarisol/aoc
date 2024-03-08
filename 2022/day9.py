@@ -8,7 +8,7 @@ def read_trail():
     with open('../resources/rope_trail.txt') as trail_file:
         instructions = trail_file.read().splitlines()
         trail_file.close()
-        trail = []
+    trail = []
     for instruction in instructions:
         instruction = instruction.split(' ')
         if instruction[0] == 'R':
