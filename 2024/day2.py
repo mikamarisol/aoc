@@ -12,6 +12,8 @@ def count_safe_reports(reports):
     for report in reports:
         if is_report_safe(report):
             count += 1
+        elif has_safe_dampened_report(report):
+            count += 1
     return count
 
 
@@ -21,6 +23,13 @@ def is_report_safe(report):
     delta_magnitudes = set(abs(level_delta))
 
     return (delta_signs == {1} or delta_signs == {-1}) and delta_magnitudes.issubset({1, 2, 3})
+
+
+def has_safe_dampened_report(report):
+    for i in range(len(report)):
+        dampened_report = np.delete(report, i )
+        if is_report_safe(dampened_report):
+            return True
 
 
 if __name__ == '__main__':
