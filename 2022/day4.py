@@ -1,5 +1,5 @@
 def read_pair_assignments():
-    with open('../resources/paired_sections.txt') as assignments:
+    with open('resources/paired_sections.txt') as assignments:
         pair_assignments = []
         for line in assignments.readlines():
             data = line.strip().split(',')

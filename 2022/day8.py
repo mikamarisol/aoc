@@ -2,7 +2,7 @@ import numpy as np
 
 
 def read_forest_map():
-    with open('../resources/forest.txt') as forest_grid_file:
+    with open('resources/forest.txt') as forest_grid_file:
         forest = forest_grid_file.read().splitlines()
         forest_grid_file.close()
 

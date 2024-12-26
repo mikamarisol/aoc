@@ -2,7 +2,7 @@ from patterns import *
 from directory import Directory
 from file import File
 
-instructions_file = '../../resources/directory_navigation_output.txt'
+instructions_file = '../resources/directory_navigation_output.txt'
 
 def read_instructions(directory_navigation_file):
     with open(directory_navigation_file) as file:

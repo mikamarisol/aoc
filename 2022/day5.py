@@ -34,7 +34,7 @@ def sort_stacks():
 
 
 def read_crate_grid():
-    with open('../resources/crate-stacks.txt') as crate_stacks_file:
+    with open('resources/crate-stacks.txt') as crate_stacks_file:
         file_lines = crate_stacks_file.read(20480).splitlines()
         grid = []
         i = 0
@@ -56,7 +56,7 @@ def read_crate_grid():
 
 
 def read_crate_instructions():
-    with open('../resources/crate-stacks.txt') as crate_stacks_file:
+    with open('resources/crate-stacks.txt') as crate_stacks_file:
         file_lines = crate_stacks_file.read(20480).splitlines()
         instructions = []
 

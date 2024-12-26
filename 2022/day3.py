@@ -1,10 +1,10 @@
 def open_rucksacks_by_compartment():
-    with open('../resources/rucksacks.txt') as rucksacks:
+    with open('resources/rucksacks.txt') as rucksacks:
         return [separate_compartments(rucksack) for rucksack in rucksacks.readlines()]
 
 
 def open_rucksacks_by_groups():
-    with open('../resources/rucksacks.txt') as rucksacks:
+    with open('resources/rucksacks.txt') as rucksacks:
         group_size = 3
         rucksacks = [rucksack.strip() for rucksack in rucksacks.readlines()]
         return [rucksacks[i:i + group_size] for i in range(0, len(rucksacks), group_size)]

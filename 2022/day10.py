@@ -2,7 +2,7 @@ import re
 
 
 def read_cathode_ray_instructions():
-    with open('../resources/cathode_ray_instructions.txt') as instructions_file:
+    with open('resources/cathode_ray_instructions.txt') as instructions_file:
         instructions = instructions_file.read().splitlines()
         instructions_file.close()
     addx_pattern = re.compile(r'addx (?P<value>-?\d+)')

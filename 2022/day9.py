@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 
 def read_trail():
-    with open('../resources/rope_trail.txt') as trail_file:
+    with open('resources/rope_trail.txt') as trail_file:
         instructions = trail_file.read().splitlines()
         trail_file.close()
     trail = []

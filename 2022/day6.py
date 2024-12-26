@@ -11,7 +11,7 @@ def characters_to_first_marker(marker_length):
 
 
 def read_signal():
-    with open('../resources/signal.txt') as signal:
+    with open('resources/signal.txt') as signal:
         signal = signal.readline()
         return signal
 
